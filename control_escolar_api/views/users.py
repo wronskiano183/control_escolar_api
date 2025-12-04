@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 import json
 
 
-class AdminAll(generics.CreateAPIView):
+class administradoresAll(generics.CreateAPIView):
     # Esta función es esencial para todo donde se requiera autorización de inicio de sesión (token)
     permission_classes = (permissions.IsAuthenticated,)
     # Invocamos la petición GET para obtener todos los administradores
@@ -24,7 +24,7 @@ class AdminAll(generics.CreateAPIView):
         return Response(lista, 200)
 
 
-class AdminView(generics.CreateAPIView):
+class administradoresView(generics.CreateAPIView):
 
     # Permisos por método (sobrescribe el comportamiento default)
     # Verifica que el usuario esté autenticado para las peticiones GET, PUT y DELETE
