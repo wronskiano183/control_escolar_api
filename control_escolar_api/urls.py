@@ -15,9 +15,9 @@ from control_escolar_api.views import materias
 urlpatterns = [
 
     # Create Admin
-    path('administradores/', users.AdminView.as_view()),
+    path('administradores/', users.administradoresView.as_view()),
     # Admin Data
-    path('lista-administradores/', users.AdminAll.as_view()),
+    path('lista-administradores/', users.administradoresAll.as_view()),
     # Edit Admin
     # path('admins-edit/', users.AdminsViewEdit.as_view())
     path('alumnos/', alumnos.AlumnoView.as_view()),

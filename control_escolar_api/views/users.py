@@ -20,7 +20,7 @@ class administradoresAll(generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         admin = Administradores.objects.filter(
             user__is_active=1).order_by("id")
-        lista = AdminSerializer(admin, many=True).data
+        lista = administradoresSerializer(admin, many=True).data
         return Response(lista, 200)
 
 
@@ -35,7 +35,7 @@ class administradoresView(generics.CreateAPIView):
 
     def get(self, request, *args, **kwargs):
         admin = get_object_or_404(Administradores, id=request.GET.get("id"))
-        admin = AdminSerializer(admin, many=False).data
+        admin = administradoresSerializer(admin, many=False).data
         # Si todo es correcto, regresamos la información
         return Response(admin, 200)
 
@@ -104,7 +104,7 @@ class administradoresView(generics.CreateAPIView):
         user.last_name = request.data["last_name"]
         user.save()
 
-        return Response({"message": "Administrador actualizado correctamente", "admin": AdminSerializer(admin).data}, 200)
+        return Response({"message": "Administrador actualizado correctamente", "admin": administradoresSerializer(admin).data}, 200)
         # return Response(user,200)
 
         # eliminar maestros
