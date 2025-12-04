@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 import json
 
 
-class administradoresAll(generics.CreateAPIView):
+class AdminAll(generics.CreateAPIView):
     # Esta función es esencial para todo donde se requiera autorización de inicio de sesión (token)
     permission_classes = (permissions.IsAuthenticated,)
     # Invocamos la petición GET para obtener todos los administradores
@@ -20,11 +20,11 @@ class administradoresAll(generics.CreateAPIView):
     def get(self, request, *args, **kwargs):
         admin = Administradores.objects.filter(
             user__is_active=1).order_by("id")
-        lista = administradoresSerializer(admin, many=True).data
+        lista = AdminSerializer(admin, many=True).data
         return Response(lista, 200)
 
 
-class administradoresView(generics.CreateAPIView):
+class AdminView(generics.CreateAPIView):
 
     # Permisos por método (sobrescribe el comportamiento default)
     # Verifica que el usuario esté autenticado para las peticiones GET, PUT y DELETE
@@ -35,7 +35,7 @@ class administradoresView(generics.CreateAPIView):
 
     def get(self, request, *args, **kwargs):
         admin = get_object_or_404(Administradores, id=request.GET.get("id"))
-        admin = administradoresSerializer(admin, many=False).data
+        admin = AdminSerializer(admin, many=False).data
         # Si todo es correcto, regresamos la información
         return Response(admin, 200)
 
@@ -104,7 +104,7 @@ class administradoresView(generics.CreateAPIView):
         user.last_name = request.data["last_name"]
         user.save()
 
-        return Response({"message": "Administrador actualizado correctamente", "admin": administradoresSerializer(admin).data}, 200)
+        return Response({"message": "Administrador actualizado correctamente", "admin": AdminSerializer(admin).data}, 200)
         # return Response(user,200)
 
         # eliminar maestros

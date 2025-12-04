@@ -13,11 +13,10 @@ from control_escolar_api.views import materias
 
 # endpoint son las rutas de acceso a los diferentes servicios entre el cliente y el servidor
 urlpatterns = [
-    path('admin/', admin.site.urls),
     # Create Admin
-    path('administradores/', users.administradoresView.as_view()),
+    path('admin/', users.AdminView.as_view()),
     # Admin Data
-    path('lista-administradores/', users.administradoresAll.as_view()),
+    path('lista-admins/', users.AdminAll.as_view()),
     # Edit Admin
     # path('admins-edit/', users.AdminsViewEdit.as_view())
     path('alumnos/', alumnos.AlumnoView.as_view()),
